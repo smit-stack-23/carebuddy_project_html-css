@@ -1,0 +1,2420 @@
+/* =========================
+    FONT IMPORTS
+========================= */
+/* Added font-display=swap for performance */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@500;600&family=Roboto:wght@400;500&display=swap&font-display=swap");
+
+/* =========================
+    COLOR & FONT VARIABLES
+========================= */
+:root {
+  /* Color Palette */
+  --teal: #00a8a8;
+  --dark-teal: #007b7b;
+  --mint-green: #a8f0d1;
+  --light-aqua: #e6f9f9;
+  --deep-navy: #002b36;
+  --off-white: #f9fafa;
+  --coral: #ff6b6b; /* Used for SOS/Alerts */
+
+  /* Derived/Utility Colors */
+  --background-color: #f8fafa; /* A slightly darker off-white for contrast */
+  --accent-color: #ffe082; /* High-contrast yellow/gold for CTAs */
+  --heading-color: #004d4d; /* Darkened teal for strong contrast */
+  --text-color: #333;
+
+  /* Font Variables */
+  --font-primary: "Montserrat", sans-serif; /* Headings */
+  --font-secondary: "Roboto", sans-serif; /* Body Text */
+  --font-accent: "Poppins", sans-serif; /* Buttons/Highlights */
+}
+
+/* =========================
+    GLOBAL STYLES
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  font-family: var(--font-secondary);
+}
+
+/* Headings & Titles */
+h1,
+h2,
+h3,
+.section-title {
+  font-family: var(--font-primary);
+  font-weight: 700;
+}
+
+/* Buttons, Highlights */
+button,
+.cta,
+.secondary-btn {
+  font-family: var(--font-accent);
+  font-weight: 600;
+}
+
+/* =========================
+    NAVBAR
+========================= */
+nav {
+  width: 100%;
+  background-color: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 4rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  font-family: var(--font-primary);
+}
+
+/* 🔗 Navbar Links */
+.navbar-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.nav-links li {
+  margin: 0 1rem;
+  position: relative;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  font-family: var(--font-secondary);
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: var(--accent-color); /* Highlight color */
+}
+
+/* 🎯 CTA Button (Login) */
+.cta {
+  background-color: var(--accent-color);
+  color: var(--deep-navy); /* Dark text for high contrast on yellow */
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  font-family: var(--font-accent);
+}
+
+.cta:hover {
+  background-color: #fff59d; /* Lighter yellow on hover */
+}
+
+/* =========================
+    DROPDOWN MENU
+========================= */
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: var(--teal);
+  top: 100%;
+  left: 0;
+  width: 200px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 999;
+}
+
+.dropdown a {
+  display: block;
+  padding: 0.8rem 1rem;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s;
+  font-family: var(--font-secondary);
+}
+
+.dropdown a:hover {
+  background-color: var(--dark-teal);
+}
+
+/* Show dropdown on hover (desktop) */
+.nav-links li:hover > .dropdown {
+  display: block;
+}
+
+/* =========================
+    HAMBURGER MENU
+========================= */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.menu-toggle span {
+  height: 3px;
+  width: 25px;
+  background: white;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+/* Animate hamburger into an "X" */
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* =========================
+    FONT IMPORTS
+========================= */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@500;600&family=Roboto:wght@400;500&display=swap&font-display=swap");
+
+/* =========================
+    COLOR & FONT VARIABLES
+========================= */
+:root {
+  /* --- User Preferred Color Palette --- */
+  --teal: #00a8a8;
+  --dark-teal: #007b7b;
+  --mint-green: #a8f0d1;
+  --light-aqua: #e6f9f9;
+  --deep-navy: #002b36;
+  --off-white: #f9fafa;
+  --coral: #ff6b6b;
+
+  /* --- Derived/Utility Colors --- */
+  --background-page: var(--f9fafa);
+  --background-card: #ffffff;
+  --color-heading: var(--dark-teal);
+  --color-text-primary: var(--deep-navy);
+  --color-border: #cdecec;
+  --color-success: var(--mint-green);
+  --color-error: var(--coral);
+  --color-focus-shadow: 0 0 0 3px rgba(0, 168, 168, 0.25);
+
+  /* --- User Preferred Font Variables --- */
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: "Roboto", sans-serif;
+  --font-ui: "Poppins", sans-serif;
+}
+
+/* Base body style for font and background context */
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  background-color: var(--background-page);
+  margin: 0;
+  padding: 0;
+}
+
+/* =============================
+   ENTER HEALTH DATA — CENTERED COLLAPSIBLE
+   ============================= */
+
+/* --- Wrapper Box --- */
+#enter-health-data {
+  background: linear-gradient(145deg, #ffffff, #f7fdfd);
+  border-radius: 14px;
+  padding: 2rem 2.2rem;
+  max-width: 700px;
+  width: 90%;
+  margin: 2rem auto; /* centers horizontally */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+/* Hover Lift Effect */
+#enter-health-data:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 168, 168, 0.15);
+}
+
+/* --- Toggle Header --- */
+#toggle-health-data {
+  color: #007f7f;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 0.8rem;
+  transition: color 0.3s ease;
+}
+
+#toggle-health-data:hover {
+  color: #00a8a8;
+}
+
+/* Arrow animation */
+#toggle-health-data::after {
+  content: "▼";
+  position: absolute;
+  right: 10px;
+  top: 0;
+  font-size: 1rem;
+  color: #00a8a8;
+  transition: transform 0.4s ease;
+}
+
+#enter-health-data.active #toggle-health-data::after {
+  transform: rotate(180deg);
+}
+
+/* --- Description --- */
+#enter-health-data > p {
+  color: #5a6b6b;
+  font-size: 0.95rem;
+  margin-bottom: 1.4rem;
+  font-weight: 500;
+}
+
+/* --- Collapsible Form Container --- */
+#form-container {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+#enter-health-data.active #form-container {
+  max-height: 2000px;
+  opacity: 1;
+}
+
+/* --- Form Layout --- */
+#health-data-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* --- Fieldset Card Style --- */
+#health-data-form fieldset {
+  border: 1.5px solid #cdecec;
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  background-color: #f8fefe;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+}
+
+#health-data-form fieldset:hover {
+  border-color: #00a8a8;
+  box-shadow: 0 0 10px rgba(0, 168, 168, 0.12);
+}
+
+/* --- Legends --- */
+#health-data-form legend {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #007f7f;
+  padding: 0 0.5rem;
+}
+
+/* --- Labels --- */
+#health-data-form label {
+  display: block;
+  margin-top: 0.8rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #004d4d;
+}
+
+/* --- Input, Select, Textarea --- */
+#health-data-form input,
+#health-data-form select,
+#health-data-form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.4px solid #cdecec;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 0.95rem;
+  color: #24303a;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+#health-data-form input:focus,
+#health-data-form select:focus,
+#health-data-form textarea:focus {
+  outline: none;
+  border-color: #00a8a8;
+  box-shadow: 0 0 0 3px rgba(0, 168, 168, 0.18);
+}
+
+/* --- Buttons --- */
+#health-data-form button {
+  background-color: #00a8a8;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 0.8rem;
+}
+
+#health-data-form button:hover {
+  background-color: #007f7f;
+  transform: translateY(-1px);
+}
+
+#health-data-form button[type="reset"] {
+  background-color: #e8f7f7;
+  color: #007f7f;
+}
+
+#health-data-form button[type="reset"]:hover {
+  background-color: #d9f3f3;
+}
+
+/* --- Fade Animation --- */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 650px) {
+  #enter-health-data {
+    padding: 1.5rem;
+  }
+
+  #health-data-form fieldset {
+    padding: 1rem;
+  }
+
+  #health-data-form button {
+    width: 100%;
+    margin: 0.5rem 0 0;
+  }
+}
+
+/* =============================
+   BMI CALCULATOR — STACKED DESIGN
+   ============================= */
+
+#bmi-calculator {
+  background: linear-gradient(145deg, #ffffff, #f4fcfc);
+  border-radius: 16px;
+  padding: 2.4rem 2.8rem;
+  max-width: 700px;
+  width: 90%;
+  margin: 2.5rem auto;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+#bmi-calculator:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 168, 168, 0.15);
+}
+
+/* --- Header --- */
+#bmi-calculator h2 {
+  color: #007f7f;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+#bmi-calculator p {
+  font-size: 0.97rem;
+  color: #5a6b6b;
+  margin-bottom: 1.8rem;
+  line-height: 1.6;
+}
+
+/* --- Form Layout --- */
+#bmiForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* --- Input Group --- */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1.2rem;
+}
+
+#bmiForm label {
+  text-align: left;
+  font-weight: 600;
+  color: #004d4d;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+#bmiForm input {
+  padding: 0.8rem 1rem;
+  border: 1.5px solid #cdecec;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 1rem;
+  color: #24303a;
+  transition: all 0.3s ease;
+}
+
+#bmiForm input:focus {
+  outline: none;
+  border-color: #00a8a8;
+  box-shadow: 0 0 0 3px rgba(0, 168, 168, 0.18);
+}
+
+/* --- Button --- */
+#calculateBtn {
+  background-color: #00a8a8;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem 2.2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.6rem;
+  letter-spacing: 0.4px;
+}
+
+#calculateBtn:hover {
+  background-color: #007f7f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 127, 127, 0.2);
+}
+
+/* --- Result Display --- */
+#bmiResult {
+  margin-top: 2rem;
+  margin-left: 4rem;
+  background-color: #f1fbfb;
+  border-radius: 12px;
+  padding: 1.3rem 1.8rem;
+  box-shadow: 0 3px 8px rgba(0, 168, 168, 0.08);
+  color: #004d4d;
+  font-size: 1rem;
+  line-height: 1.6;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+#bmiResult:hover {
+  background-color: #e8fafa;
+}
+
+#bmiValue {
+  font-weight: 700;
+  color: #00a8a8;
+}
+
+#bmiStatus {
+  font-weight: 600;
+  color: #007f7f;
+}
+
+/* --- Subtle Fade Animation --- */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#bmiResult {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 600px) {
+  #bmi-calculator {
+    padding: 1.8rem;
+  }
+
+  #calculateBtn {
+    width: 100%;
+  }
+}
+
+/* ==================================
+   DIET PLAN — REFINED MODERN DESIGN
+   ================================== */
+
+#diet-plan {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem 2.2rem;
+  max-width: 700px;
+  margin: 3rem auto;
+  box-shadow: 0 10px 30px rgba(0, 168, 168, 0.15);
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+/* Header Title */
+#diet-plan h2 {
+  color: #009999;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  cursor: pointer;
+  display: inline-block;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+#diet-plan h2:hover {
+  color: #00b5b5;
+  transform: scale(1.03);
+}
+
+/* Sub-description */
+#diet-plan > p {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Collapsible animation */
+#diet-form-container {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease, opacity 0.6s ease;
+}
+
+#diet-plan.active #diet-form-container {
+  max-height: 1000px;
+  opacity: 1;
+}
+
+/* Form container styling */
+#dietForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  text-align: left;
+}
+
+/* Field styling */
+#dietForm label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.3rem;
+  display: block;
+  font-size: 0.95rem;
+}
+
+#dietForm select,
+#dietForm input {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1.6px solid #bfecec;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: #f9fefe;
+}
+
+#dietForm select:focus,
+#dietForm input:focus {
+  border-color: #00a8a8;
+  outline: none;
+  box-shadow: 0 0 6px rgba(0, 168, 168, 0.25);
+}
+
+/* Button design */
+#dietForm button {
+  padding: 0.85rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #00a8a8;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 168, 168, 0.2);
+}
+
+#dietForm button:hover {
+  background: #009494;
+  transform: translateY(-2px);
+}
+
+/* =============================
+   DIET RESULT — CAREBUDDY STYLE
+   ============================= */
+#dietResult {
+  margin-top: 2rem;
+  background: linear-gradient(145deg, #ffffff, #f5fdfd);
+  border: 1px solid #c7efef;
+  border-radius: 14px;
+  padding: 1.5rem 1.8rem;
+  text-align: left;
+  box-shadow: 0 6px 18px rgba(0, 168, 168, 0.1);
+  transition: all 0.3s ease;
+}
+
+#dietResult:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 168, 168, 0.15);
+}
+
+#dietResult h3 {
+  color: #00a8a8;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  border-left: 4px solid #00a8a8;
+  padding-left: 0.6rem;
+}
+
+#dietResult ul {
+  list-style-type: disc;
+  padding-left: 1.8rem;
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+#dietResult li {
+  margin-bottom: 0.6rem;
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+#dietResult li:hover {
+  color: #007777;
+  transform: translateX(4px);
+}
+
+/* Highlighted list style for better readability */
+#dietResult li::marker {
+  color: #00a8a8;
+}
+
+/* Optional subtle animation when new results appear */
+#dietResult {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInResult 0.6s ease forwards;
+}
+
+@keyframes fadeInResult {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  #dietResult {
+    padding: 1.2rem 1.4rem;
+  }
+
+  #dietResult h3 {
+    font-size: 1.1rem;
+  }
+
+  #dietResult ul {
+    font-size: 0.9rem;
+  }
+}
+
+/* Decorative accent (small teal bar under title) */
+#diet-plan h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #00a8a8;
+  margin: 0.5rem auto 0.8rem;
+  border-radius: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  #diet-plan {
+    padding: 1.5rem;
+  }
+
+  #diet-plan h2 {
+    font-size: 1.5rem;
+  }
+
+  #dietForm button {
+    font-size: 0.95rem;
+  }
+}
+
+/* =============================
+   EXERCISE LOG — MODERN STYLE
+   ============================= */
+
+#exercise-log {
+  background: linear-gradient(145deg, #ffffff, #f4fcfc);
+  border-radius: 14px;
+  padding: 2rem;
+  max-width: 700px;
+  margin: 2rem auto;
+  box-shadow: 0 6px 20px rgba(0, 168, 168, 0.15);
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  transition: all 0.4s ease;
+}
+
+/* Header */
+#exercise-log h2 {
+  color: #008b8b;
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  transition: color 0.3s ease;
+}
+
+#exercise-log h2:hover {
+  color: #00a8a8;
+}
+
+/* Description */
+#exercise-log p {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Collapsible container */
+#exercise-form-container {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+#exercise-log.active #exercise-form-container {
+  max-height: 1500px;
+  opacity: 1;
+}
+
+/* --- Form --- */
+#exerciseForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  text-align: left;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* --- Fieldset --- */
+#exerciseForm fieldset {
+  border: 1.5px solid #cdecec;
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  background-color: #f9fefe;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#exerciseForm fieldset:hover {
+  border-color: #00a8a8;
+  box-shadow: 0 0 10px rgba(0, 168, 168, 0.1);
+}
+
+#exerciseForm legend {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #007f7f;
+  padding: 0 0.5rem;
+}
+
+/* --- Labels --- */
+#exerciseForm label {
+  display: block;
+  margin-top: 0.8rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #004d4d;
+}
+
+/* --- Inputs, Selects, and Textareas --- */
+#exerciseForm input,
+#exerciseForm select,
+#exerciseForm textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.4px solid #cdecec;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 0.95rem;
+  color: #24303a;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+#exerciseForm input:focus,
+#exerciseForm select:focus,
+#exerciseForm textarea:focus {
+  outline: none;
+  border-color: #00a8a8;
+  box-shadow: 0 0 0 3px rgba(0, 168, 168, 0.18);
+}
+
+/* --- Buttons --- */
+#exerciseForm button {
+  background-color: #00a8a8;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 0.8rem;
+}
+
+#exerciseForm button:hover {
+  background-color: #007f7f;
+  transform: translateY(-1px);
+}
+
+#exerciseForm button[type="reset"] {
+  background-color: #e8f7f7;
+  color: #007f7f;
+}
+
+#exerciseForm button[type="reset"]:hover {
+  background-color: #d9f3f3;
+}
+
+/* --- Hidden class for JS toggle --- */
+.hidden {
+  display: none;
+}
+
+/* --- Fade animation --- */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 650px) {
+  #exercise-log {
+    padding: 1.5rem;
+  }
+
+  #exerciseForm fieldset {
+    padding: 1rem;
+  }
+
+  #exerciseForm button {
+    width: 100%;
+    margin: 0.5rem 0 0;
+  }
+}
+
+/* =============================
+   FITNESS TRACKING — CAREBUDDY STYLE
+   ============================= */
+#fitness-tracking {
+  background: linear-gradient(145deg, #ffffff, #f4fcfc);
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 6px 20px rgba(0, 168, 168, 0.15);
+  max-width: 700px;
+  margin: 2rem auto;
+  font-family: "Poppins", sans-serif;
+}
+
+#fitness-tracking h2 {
+  color: #00a8a8;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+#fitness-tracking p {
+  color: #555;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+#fitnessForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-group label {
+  color: #007777;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #cceaea;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #00a8a8;
+  box-shadow: 0 0 8px rgba(0, 168, 168, 0.2);
+}
+
+#saveFitness {
+  background: #00a8a8;
+  color: #fff;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+#saveFitness:hover {
+  background: #008c8c;
+  transform: translateY(-2px);
+}
+
+/* Log Boxes */
+.fitness-log-box {
+  background: #f7fefe;
+  border: 1px solid #cceaea;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 168, 168, 0.1);
+  transition: all 0.3s ease;
+}
+
+.fitness-log-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 168, 168, 0.15);
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #007777;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+  background: #e8f6f6;
+  border-radius: 8px;
+  height: 10px;
+  overflow: hidden;
+  margin: 0.5rem 0;
+}
+
+.progress-fill {
+  height: 10px;
+  background: linear-gradient(90deg, #00a8a8, #00cccc);
+  transition: width 0.4s ease;
+}
+
+.delete-log {
+  background: transparent;
+  border: none;
+  color: #ff5a5a;
+  cursor: pointer;
+  font-weight: 600;
+  float: right;
+}
+
+@media (max-width: 600px) {
+  #fitness-tracking {
+    padding: 1.5rem;
+  }
+}
+
+/* ==============================
+   SLEEP ANALYZER STYLING
+============================== */
+#sleep-analyzer {
+  background: linear-gradient(145deg, #ffffff, #f4fcfc);
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  max-width: 700px;
+  margin: 2rem auto;
+  box-shadow: 0 6px 20px rgba(0, 168, 168, 0.1);
+  transition: all 0.3s ease;
+}
+
+#sleep-analyzer h2 {
+  color: #00a8a8;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+#sleep-analyzer p {
+  color: #444;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+#sleepForm .input-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#sleepForm label {
+  flex: 1 1 100%;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+#sleepForm input[type="datetime-local"],
+#sleepForm input[readonly] {
+  flex: 1 1 calc(50% - 1rem);
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #cdeaea;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border 0.2s ease;
+}
+
+#sleepForm input:focus {
+  border-color: #00a8a8;
+  outline: none;
+}
+
+#sleepForm button {
+  background: #00a8a8;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#sleepForm button:hover {
+  background: #009191;
+}
+
+.result-box {
+  margin-top: 1.8rem;
+  background: #f5fdfd;
+  border: 1px solid #c7efef;
+  border-radius: 12px;
+  padding: 1.3rem 1.5rem;
+  text-align: left;
+  box-shadow: inset 0 0 10px rgba(0, 168, 168, 0.08);
+}
+
+.result-box h3 {
+  color: #00a8a8;
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+
+.sleep-summary p {
+  margin-bottom: 0.4rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  #sleepForm .input-group {
+    flex-direction: column;
+  }
+
+  #sleepForm input[type="datetime-local"],
+  #sleepForm input[readonly] {
+    width: 100%;
+  }
+
+  #sleep-analyzer {
+    padding: 1.5rem;
+  }
+}
+
+/* ================================
+   HEART RATE MONITOR — STYLE
+================================ */
+body {
+  background: #f5fcfc;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+}
+
+#heart-rate-monitor {
+  background: linear-gradient(145deg, #ffffff, #f4fcfc);
+  border-radius: 16px;
+  padding: 2rem 2.2rem;
+  max-width: 800px;
+  margin: 3rem auto;
+  box-shadow: 0 8px 25px rgba(0, 168, 168, 0.15);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+#heart-rate-monitor h2 {
+  color: #007f7f;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+#heart-rate-monitor p {
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.live-reading {
+  background: #e8fafa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 168, 168, 0.15);
+}
+
+.heart-rate-value {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #00a8a8;
+  margin-bottom: 0.4rem;
+}
+
+.status-text {
+  font-size: 1rem;
+  color: #666;
+}
+
+#connectBtn {
+  background: #00a8a8;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#connectBtn:hover {
+  background: #008f8f;
+}
+
+/* Bluetooth icon */
+.bluetooth-icon {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.8rem;
+  color: #bbb;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.bluetooth-icon.connected {
+  color: #00a8a8;
+  transform: scale(1.2);
+}
+
+/* Logs */
+.log-box {
+  background: #f9ffff;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 168, 168, 0.08);
+  text-align: left;
+}
+
+#heartRateList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+#heartRateList li {
+  padding: 6px 0;
+  border-bottom: 1px solid #e0f3f3;
+}
+
+/* Chart box */
+.chart-box {
+  background: #f9fdfd;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 168, 168, 0.08);
+}
+
+.chart-box h3 {
+  margin-bottom: 1rem;
+  color: #007f7f;
+}
+
+/* ===============================
+   HYDRATION TRACKER — STYLE
+=============================== */
+#hydration-tracker {
+  background: linear-gradient(145deg, #ffffff, #f4fcfc);
+  border-radius: 14px;
+  padding: 2rem;
+  max-width: 700px;
+  margin: 2rem auto;
+  box-shadow: 0 8px 20px rgba(0, 168, 168, 0.1);
+}
+
+#hydration-tracker h2 {
+  color: #00a8a8;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.hydration-goal,
+.hydration-progress,
+.hydration-actions,
+.hydration-reminder {
+  background: #f7fdfd;
+  border: 1px solid #d4f2f2;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 168, 168, 0.08);
+}
+
+.hydration-inputs {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.hydration-inputs input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #bce8e8;
+  border-radius: 8px;
+}
+
+button {
+  background: #00a8a8;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #008f8f;
+}
+
+progress {
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  accent-color: #00a8a8;
+  margin: 0.5rem 0;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.water-btn {
+  background: #e0f9f9;
+  color: #007f7f;
+  border: 1px solid #bce8e8;
+}
+
+.water-btn:hover {
+  background: #00a8a8;
+  color: #fff;
+}
+
+#progressValue {
+  font-weight: 600;
+  color: #444;
+  display: block;
+  text-align: right;
+}
+
+/* =============================
+   CALORIE COUNTER — CAREBUDDY STYLE (With Progress Bar)
+   ============================= */
+#calorie-counter {
+  max-width: 780px;
+  margin: 3rem auto;
+  background: linear-gradient(145deg, #ffffff, #f4fcfc);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 6px 20px rgba(0, 168, 168, 0.15);
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+/* ===== Heading ===== */
+#calorie-counter h2 {
+  color: #00a8a8;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+#calorie-counter p {
+  color: #555;
+  margin-bottom: 1.8rem;
+  font-size: 0.95rem;
+}
+
+/* ===== Form Layout ===== */
+.calorie-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 420px;
+  text-align: left;
+}
+
+.form-row label {
+  font-weight: 600;
+  color: #007777;
+  margin-bottom: 0.4rem;
+}
+
+.form-row input {
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #cceaea;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-row input:focus {
+  border-color: #00a8a8;
+  box-shadow: 0 0 8px rgba(0, 168, 168, 0.2);
+}
+
+/* ===== Buttons ===== */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.form-actions button {
+  background: #00a8a8;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.form-actions button:hover {
+  background: #008c8c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 168, 168, 0.25);
+}
+
+/* ===== Quick Presets ===== */
+.quick-presets {
+  margin-top: 2rem;
+  background: #f7fefe;
+  border: 1px solid #e2f5f5;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  text-align: left;
+}
+
+.quick-presets strong {
+  color: #007777;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.preset-btn {
+  background: #e6fafa;
+  border: 1px solid #bdeeee;
+  color: #007777;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin: 0.3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.preset-btn:hover {
+  background: #00a8a8;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ===== Calorie List ===== */
+.calorie-list-wrap {
+  margin-top: 2.5rem;
+  text-align: left;
+}
+
+.calorie-list-wrap h3 {
+  color: #00a8a8;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.calorie-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.calorie-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fefe;
+  border: 1px solid #d7f2f2;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.7rem;
+  transition: all 0.3s ease;
+}
+
+.calorie-list li:hover {
+  background: #e8fdfd;
+}
+
+.item-left {
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.item-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #007777;
+  font-weight: 600;
+}
+
+.remove-item {
+  background: none;
+  border: none;
+  color: #d33;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.remove-item:hover {
+  color: #b00;
+  text-decoration: underline;
+}
+
+/* ===== Summary Section ===== */
+.calorie-summary {
+  margin-top: 1.8rem;
+  background: #f7fefe;
+  padding: 1.2rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e1f4f4;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: #007777;
+  margin-bottom: 1rem;
+}
+
+.summary-value {
+  color: #00a8a8;
+  font-size: 1.1rem;
+}
+
+/* ===== Calorie Progress Bar ===== */
+#calorieProgressContainer {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+#calorieProgress {
+  width: 100%;
+  height: 18px;
+  border-radius: 10px;
+  appearance: none;
+  overflow: hidden;
+}
+
+#calorieProgress::-webkit-progress-bar {
+  background-color: #e8f6f6;
+  border-radius: 10px;
+}
+
+#calorieProgress::-webkit-progress-value {
+  background: linear-gradient(90deg, #00a8a8, #00cccc);
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+#progressValue {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  color: #007777;
+  font-weight: 600;
+}
+
+/* ===== Summary Buttons ===== */
+.summary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.summary-actions button {
+  background: #00a8a8;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.summary-actions button:hover {
+  background: #008c8c;
+  transform: translateY(-2px);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 600px) {
+  #calorie-counter {
+    padding: 1.8rem;
+  }
+
+  .form-row {
+    max-width: 100%;
+  }
+
+  .form-actions button,
+  .summary-actions button {
+    width: 100%;
+  }
+}
+/* ===============================
+   STRESS & MOOD TRACKER STYLING
+=============================== */
+#moodTrackerSection {
+  background: linear-gradient(145deg, #ffffff, #f5fafa);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 168, 168, 0.08);
+  padding: 2rem;
+  max-width: 700px;
+  margin: 2rem auto;
+  font-family: "Poppins", sans-serif;
+}
+
+#moodTrackerSection h2 {
+  color: #008c8c;
+  text-align: center;
+  margin-bottom: 0.4rem;
+}
+
+#moodTrackerSection p {
+  text-align: center;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.tracker-form .input-group {
+  margin-bottom: 1.2rem;
+}
+
+.tracker-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #333;
+}
+
+#moodSelect,
+#stressScale,
+textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1.5px solid #cdecec;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+#moodSelect:focus,
+#stressScale:focus,
+textarea:focus {
+  border-color: #00a8a8;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 168, 168, 0.3);
+}
+
+/* Emoji Display */
+.emoji-display {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 0.6rem;
+  transition: transform 0.2s ease;
+}
+.emoji-display:hover {
+  transform: scale(1.2);
+}
+
+/* Checkbox group */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+}
+.checkbox-group label {
+  background: #f7fcfc;
+  border: 1px solid #d3f3f3;
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.checkbox-group label:hover {
+  background: #e0f7f7;
+}
+
+/* Button */
+.btn-primary {
+  background-color: #00a8a8;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #008c8c;
+}
+
+/* =============================
+   HEALTH REPORT DOWNLOAD — CAREBUDDY STYLE
+   ============================= */
+
+/* =============================
+   HEALTH REPORT DOWNLOAD — CAREBUDDY STYLE (Enhanced Shadow)
+   ============================= */
+
+#health-report {
+  max-width: 980px;
+  margin: 3rem auto;
+  background: linear-gradient(160deg, #ffffff, #f6fcfc);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 168, 168, 0.12),
+    0 15px 45px rgba(0, 0, 0, 0.05), inset 0 0 10px rgba(0, 168, 168, 0.05);
+  font-family: "Poppins", sans-serif;
+  color: #0f3b3b;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Subtle hover lift for interactivity */
+#health-report:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 168, 168, 0.18),
+    0 20px 60px rgba(0, 0, 0, 0.08), inset 0 0 12px rgba(0, 168, 168, 0.06);
+}
+
+/* Header */
+#health-report header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+#health-report #healthReportTitle {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.45rem;
+  color: #007f7f;
+  font-weight: 700;
+}
+
+#health-report header .muted {
+  color: #5b6d6d;
+  font-size: 0.95rem;
+}
+
+/* Form layout */
+#healthReportForm {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* Left column (controls) */
+#healthReportForm .form-row,
+#healthReportForm fieldset {
+  background: #ffffff;
+  border: 1.2px solid #dff5f4;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 168, 168, 0.04);
+}
+
+/* Fieldset & legend */
+#healthReportForm fieldset {
+  padding: 0.9rem 1rem;
+}
+
+#healthReportForm legend {
+  font-weight: 600;
+  color: #006f6f;
+  font-family: "Montserrat", sans-serif;
+  padding: 0 0.25rem;
+  font-size: 1rem;
+}
+
+/* Labels and inputs */
+#healthReportForm label {
+  display: block;
+  font-weight: 600;
+  color: #004d4d;
+  margin-bottom: 0.35rem;
+  font-size: 0.95rem;
+}
+
+#healthReportForm input[type="date"],
+#healthReportForm input[type="email"],
+#healthReportForm select,
+#healthReportForm input[type="text"] {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border-radius: 8px;
+  border: 1.3px solid #cfeeee;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+#healthReportForm input:focus,
+#healthReportForm select:focus {
+  outline: none;
+  border-color: #00a8a8;
+  box-shadow: 0 0 0 6px rgba(0, 168, 168, 0.08);
+}
+
+/* Tracker grid inside fieldset */
+#healthReportForm .tracker-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+#healthReportForm .tracker-grid label {
+  background: #f6fefe;
+  border: 1px solid #e6f9f9;
+  padding: 0.45rem 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  color: #025a5a;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+}
+
+#healthReportForm .tracker-grid input[type="checkbox"] {
+  accent-color: #00a8a8;
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+/* Right column (actions & summary) */
+#healthReportForm > div:nth-child(2),
+#healthReportForm aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#healthReportForm .form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+#healthReportForm .form-actions button,
+#healthReportForm .summary-actions button {
+  background: linear-gradient(90deg, #00a8a8, #00d1d1);
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 168, 168, 0.12);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  font-size: 0.95rem;
+}
+
+#healthReportForm .form-actions button:hover,
+#healthReportForm .summary-actions button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(0, 168, 168, 0.14);
+}
+
+/* Secondary action styles */
+#healthReportForm button[type="button"],
+#healthReportForm .summary-actions button.secondary {
+  background: #f0ffff;
+  color: #007f7f;
+  border: 1px solid #cdecec;
+  font-weight: 600;
+}
+
+/* Status display */
+#reportStatus {
+  background: linear-gradient(180deg, #e8fcfc, #fdfefe);
+  border-left: 4px solid #00a8a8;
+  padding: 0.9rem;
+  border-radius: 8px;
+  color: #006b6b;
+  font-weight: 600;
+  display: none; /* toggled by JS */
+  text-align: center;
+}
+
+/* Summary box (download / share information) */
+#healthReportForm .summary {
+  background: #ffffff;
+  border: 1px solid #e5f7f7;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 168, 168, 0.04);
+}
+
+#healthReportForm .summary h4 {
+  margin: 0 0 0.6rem;
+  color: #007777;
+  font-size: 1rem;
+}
+
+#healthReportForm .summary p {
+  margin: 0;
+  color: #345656;
+  font-size: 0.95rem;
+}
+
+/* Small helpers */
+.hint {
+  color: #6f8b8b;
+  font-size: 0.88rem;
+  margin-top: 0.4rem;
+}
+
+/* Accessibility: focus ring for keyboard users */
+#healthReportForm button:focus,
+#healthReportForm input:focus,
+#healthReportForm select:focus {
+  outline: 3px solid rgba(0, 168, 168, 0.12);
+  outline-offset: 2px;
+}
+
+/* Mobile responsive */
+@media (max-width: 900px) {
+  #healthReportForm {
+    grid-template-columns: 1fr;
+  }
+
+  #healthReportForm .tracker-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  #health-report {
+    padding: 1.4rem;
+  }
+
+  #healthReportForm .tracker-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #healthReportForm .form-actions button,
+  #healthReportForm .summary-actions button {
+    width: 100%;
+  }
+}
+
+/* ===============================
+   INVITE CAREGIVER — STYLING
+=============================== */
+#invite-caregiver {
+  background: linear-gradient(145deg, #ffffff, #f6fcfc);
+  border-radius: 14px;
+  max-width: 750px;
+  margin: 2.5rem auto;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 6px 25px rgba(0, 168, 168, 0.15);
+  font-family: "Poppins", sans-serif;
+  color: #333;
+  transition: box-shadow 0.3s ease;
+}
+
+#invite-caregiver:hover {
+  box-shadow: 0 10px 35px rgba(0, 168, 168, 0.25);
+}
+
+#invite-caregiver header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+#invite-caregiver h2 {
+  color: #00a8a8;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+#invite-caregiver .muted {
+  color: #666;
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+}
+
+.caregiver-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+/* ===============================
+   FORM ELEMENTS
+=============================== */
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-weight: 600;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  padding: 0.7rem 1rem;
+  border: 1.5px solid #cceaea;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #00a8a8;
+  box-shadow: 0 0 6px rgba(0, 168, 168, 0.3);
+  outline: none;
+}
+
+/* ===============================
+   TRACKER GRID (Checkbox area)
+=============================== */
+fieldset {
+  border: 1.5px solid #cceaea;
+  border-radius: 12px;
+  padding: 1rem;
+  background: #f9fefe;
+}
+
+legend {
+  font-weight: 600;
+  color: #00a8a8;
+  font-size: 1rem;
+}
+
+.tracker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.7rem 1.2rem;
+  margin-top: 0.6rem;
+}
+
+.tracker-grid label {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  accent-color: #00a8a8;
+  transform: scale(1.1);
+}
+
+/* ===============================
+   BUTTONS
+=============================== */
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form-actions button {
+  background-color: #00a8a8;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.form-actions button:hover {
+  background-color: #008f8f;
+  transform: translateY(-2px);
+}
+
+.form-actions button#btnRevokeAccess {
+  background-color: #ff4c4c;
+}
+
+.form-actions button#btnRevokeAccess:hover {
+  background-color: #e63939;
+}
+
+.form-actions button[type="reset"] {
+  background-color: #ddd;
+  color: #333;
+}
+
+.form-actions button[type="reset"]:hover {
+  background-color: #ccc;
+}
+
+/* ===============================
+   STATUS MESSAGE
+=============================== */
+#inviteStatus {
+  text-align: center;
+  margin-top: 1rem;
+  color: #008080;
+  font-weight: 500;
+  background: #e6f9f9;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #b6efef;
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+=============================== */
+@media (max-width: 600px) {
+  #invite-caregiver {
+    padding: 1.5rem;
+  }
+
+  .tracker-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+
+  .form-actions button {
+    flex: 1 1 45%;
+  }
+}
+
+/* =========================
+    FOOTER
+========================= */
+footer {
+  background-color: var(--teal);
+  color: white;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.footer-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin: 1rem 0;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent-color);
+}
+
+.footer-bottom {
+  font-size: 0.9rem;
+  color: #e0f0f0;
+}
+
+/* =========================
+    RESPONSIVE DESIGN
+========================= */
+
+/* Tablet */
+@media (max-width: 1250px) {
+  nav {
+    padding: 1rem 2rem;
+  }
+
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .hero-content {
+    margin-top: 2rem;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .about {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .about-text {
+    margin-top: 2rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 1120px) {
+  nav {
+    padding: 1rem 1.5rem;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  /* Mobile Menu */
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: var(--teal);
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    text-align: center;
+    padding: 1rem 0;
+    animation: slideDown 0.4s ease forwards;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 1rem 0;
+  }
+
+  /* Login Button Always Visible */
+  .cta {
+    order: 2;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.1rem;
+  }
+
+  .menu-toggle {
+    order: 3;
+  }
+
+  /* Center hero buttons */
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dropdown {
+    position: static;
+    box-shadow: none;
+  }
+
+  .dropdown a {
+    background: var(--dark-teal);
+  }
+
+  .hero {
+    padding: 3rem 2rem;
+  }
+
+  .about,
+  .features,
+  .testimonials {
+    padding: 3rem 1.5rem;
+  }
+
+  .feature-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Slide-down animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

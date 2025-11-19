@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enter Health Data - CareBuddy</title>
+    <link rel="stylesheet" href="../css/my-medicien.css" />
+    <script src="../js/my-medicien.js" defer></script>
+  </head>
+  <body>
+    <nav>
+      <a href="logo" class="logo">CareBuddy</a>
+
+      <div class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <ul class="nav-links">
+        <li class="active"><a href="index.html">Home</a></li>
+
+        <li>
+          <a href="feacturs.html">Features ▼</a>
+          <div class="dropdown">
+            <a href="features.html#fitness">Fitness Tracking</a>
+            <a href="features.html#sleep">Sleep Analysis</a>
+            <a href="features.html#heart">Heart Rate Monitor</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="health-tracker.html">Health Tracker ▼</a>
+          <div class="dropdown">
+            <a href="#">BMI Calculator</a>
+            <a href="#">Diet Plans</a>
+            <a href="#">Exercise Logs</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="my-medicien.html">My Medicines ▼</a>
+          <div class="dropdown">
+            <a href="#">Reminders</a>
+            <a href="#">Dosage History</a>
+            <a href="#">Pharmacy Locator</a>
+          </div>
+        </li>
+        <li><button class="cta"><a href="loginpage.html">Login / Sign Up</a></button></li>
+      </ul>
+    </nav>
+
+    <main class="container" id="main" role="main">
+      <!-- ===== MEDICINE MANAGEMENT ===== -->
+      <section id="medicine-section" aria-labelledby="medicine-heading">
+        <h2 id="medicine-heading">Medicines</h2>
+
+        <!-- Add / Edit medicine form -->
+        <form
+          id="add-medicine-form"
+          aria-label="Add or edit medicine"
+          autocomplete="off"
+          novalidate
+        >
+          <fieldset>
+            <legend class="visually-hidden">Add or edit medicine</legend>
+
+            <div class="row">
+              <label for="med-name">Medicine name</label>
+              <input
+                id="med-name"
+                name="name"
+                type="text"
+                placeholder="e.g. Metformin"
+                required
+              />
+            </div>
+
+            <div class="row">
+              <label for="med-dosage">Dosage</label>
+              <input
+                id="med-dosage"
+                name="dosage"
+                type="text"
+                placeholder="e.g. 500 mg"
+              />
+            </div>
+
+            <div class="row">
+              <label for="med-frequency">Frequency</label>
+              <input
+                id="med-frequency"
+                name="frequency"
+                type="text"
+                placeholder="e.g. 2× daily"
+              />
+            </div>
+
+            <div class="row">
+              <label for="med-times">Times (CSV)</label>
+              <input
+                id="med-times"
+                name="times"
+                type="text"
+                placeholder="e.g. 08:00,20:00,22:00"
+              />
+              <small class="muted"
+                >Enter times in 24-hour HH:MM format, separated by
+                commas.</small
+              >
+            </div>
+
+            <div class="row">
+              <label for="med-supply-days">Supply (days)</label>
+              <input
+                id="med-supply-days"
+                name="supply"
+                type="number"
+                min="1"
+                placeholder="e.g. 30"
+              />
+            </div>
+
+            <div class="row">
+              <label for="med-notes">Notes</label>
+              <input
+                id="med-notes"
+                name="notes"
+                type="text"
+                placeholder="e.g. take with food"
+              />
+            </div>
+
+            <div class="row actions">
+              <button type="submit" id="save-med-btn">Save</button>
+              <button type="button" id="clear-med-form">Clear</button>
+            </div>
+          </fieldset>
+        </form>
+
+        <!-- Medicine table -->
+        <div class="table-wrap" aria-live="polite">
+          <table id="medicine-table" aria-describedby="medicine-heading">
+            <caption class="visually-hidden">
+              List of medicines
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Medicine</th>
+                <th scope="col">Dosage</th>
+                <th scope="col">Frequency</th>
+                <th scope="col">Times</th>
+                <th scope="col">Supply (days)</th>
+                <th scope="col">Notes</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Rows populated by JS. Example row structure:
+            <tr data-med-id="m1">
+              <td>1</td>
+              <td class="med-name">Metformin</td>
+              <td class="med-dosage">500 mg</td>
+              <td class="med-frequency">2× daily</td>
+              <td class="med-times">08:00,20:00</td>
+              <td class="med-supply">30</td>
+              <td class="med-notes">With food</td>
+              <td>
+                <button class="edit-med">Edit</button>
+                <button class="remove-med">Remove</button>
+              </td>
+            </tr>
+            --></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== SMART DOSE TRACKER ===== -->
+      <section id="tracker-section" aria-labelledby="tracker-heading">
+        <h2 id="tracker-heading">Smart Dose Tracker</h2>
+
+        <div id="tracker-controls" class="controls">
+          <button id="start-sync">Start Scheduler</button>
+          <button id="pause-sync">Pause Scheduler</button>
+          <button id="export-history">Export History (CSV)</button>
+        </div>
+
+        <!-- Upcoming doses (computed from medicines and their times) -->
+        <div id="upcoming-doses" aria-labelledby="upcoming-heading">
+          <h3 id="upcoming-heading">Upcoming Doses</h3>
+          <ul id="upcoming-list" aria-live="polite">
+            <!-- JS will add <li> items like:
+            <li data-dose-id="d1" data-med-id="m1" data-time="2025-11-04T08:00:00">
+              <strong>08:00</strong> — Metformin (500 mg)
+              <div class="dose-actions">
+                <button class="mark-taken">Taken</button>
+                <button class="mark-skipped">Skip</button>
+              </div>
+            </li>
+          --></ul>
+        </div>
+
+        <!-- Reminder settings -->
+        <details id="reminder-settings" aria-labelledby="reminder-heading">
+          <summary id="reminder-heading">Reminder Settings</summary>
+          <form id="reminder-form" class="grid-inline" novalidate>
+            <label for="notif-method">Notify via</label>
+            <select id="notif-method" name="notif-method">
+              <option value="in-app">In-app</option>
+              <option value="email">Email</option>
+              <option value="sms">SMS</option>
+            </select>
+
+            <label for="snooze-min">Snooze (minutes)</label>
+            <input
+              id="snooze-min"
+              name="snooze-min"
+              type="number"
+              min="0"
+              value="10"
+            />
+
+            <label for="allow-duplicate">Prevent duplicate doses</label>
+            <select id="allow-duplicate" name="allow-duplicate">
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+
+            <div class="actions">
+              <button type="submit" id="save-reminder-settings">Save</button>
+            </div>
+          </form>
+        </details>
+      </section>
+
+      <!-- ===== DOSE HISTORY ===== -->
+      <section id="history-section" aria-labelledby="history-heading">
+        <h2 id="history-heading">Dose History</h2>
+
+        <div class="history-controls">
+          <label for="history-from">From</label>
+          <input id="history-from" type="date" />
+
+          <label for="history-to">To</label>
+          <input id="history-to" type="date" />
+
+          <button id="filter-history">Filter</button>
+          <button id="clear-history">Clear</button>
+        </div>
+
+        <div class="table-wrap">
+          <table id="dose-history-table" aria-describedby="history-heading">
+            <caption class="visually-hidden">
+              History of doses taken or missed
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Medicine</th>
+                <th scope="col">Dosage</th>
+                <th scope="col">Status</th>
+                <th scope="col">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- JS will populate rows. Example:
+            <tr>
+              <td>2025-11-03</td>
+              <td>08:00</td>
+              <td>Metformin</td>
+              <td>500 mg</td>
+              <td class="status taken">Taken</td>
+              <td>On time</td>
+            </tr>
+            --></tbody>
+          </table>
+        </div>
+
+        <div id="adherence" aria-live="polite">
+          <h3>Adherence Summary</h3>
+          <p id="adherence-rate">Adherence: —%</p>
+          <p id="adherence-trend">Weekly trend: —</p>
+        </div>
+      </section>
+
+      <!-- ===== PHARMACY LOCATOR ===== -->
+      <section id="pharmacy-section" aria-labelledby="pharmacy-heading">
+        <h2 id="pharmacy-heading">Pharmacy Locator</h2>
+
+        <form id="pharmacy-form" aria-label="Find nearby pharmacies" novalidate>
+          <div class="row">
+            <label for="pharmacy-query">Enter city, ZIP or postcode</label>
+            <input
+              id="pharmacy-query"
+              type="text"
+              placeholder="e.g. 560001 or New York"
+            />
+          </div>
+
+          <div class="row">
+            <label for="pharmacy-filter">Filter</label>
+            <select id="pharmacy-filter">
+              <option value="any">Any</option>
+              <option value="open-now">Open now</option>
+              <option value="24-hours">24 hours</option>
+              <option value="delivery">Delivery</option>
+            </select>
+          </div>
+
+          <div class="row actions">
+            <button type="submit" id="find-pharmacies">Find</button>
+            <button type="button" id="use-location">Use my location</button>
+          </div>
+        </form>
+
+        <div id="pharmacy-results" aria-live="polite">
+          <h3>Results</h3>
+          <ul id="pharmacy-list">
+            <!-- JS sample item:
+          <li data-pharm-id="p1">
+            <h4 class="pharm-name">City Pharmacy</h4>
+            <p class="pharm-addr">123 Main St, Area</p>
+            <p class="pharm-hours">Open 07:00 - 22:00</p>
+            <p class="pharm-availability">Metformin: In stock</p>
+            <a href="#" class="directions">Directions</a>
+            <button class="call-pharm" data-phone="+1234567890">Call</button>
+          </li>
+          --></ul>
+        </div>
+      </section>
+
+      <!-- ===== REFILL ALERTS ===== -->
+      <section id="refill-section" aria-labelledby="refill-heading">
+        <h2 id="refill-heading">Refill Alerts</h2>
+
+        <form id="refill-settings-form" class="grid-inline" novalidate>
+          <label for="refill-threshold">Threshold (days left)</label>
+          <input id="refill-threshold" type="number" min="1" value="7" />
+
+          <label for="refill-notify">Notify via</label>
+          <select id="refill-notify">
+            <option value="in-app">In-app</option>
+            <option value="email">Email</option>
+            <option value="sms">SMS</option>
+          </select>
+
+          <div class="actions">
+            <button type="submit" id="save-refill-settings">Save</button>
+          </div>
+        </form>
+
+        <div id="upcoming-refills">
+          <h3>Upcoming refills</h3>
+          <ul id="refill-list">
+            <!-- JS will populate refill warnings based on med supply/days -->
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- TEMPLATES for JS insertion (do not render) -->
+    <template id="medicine-row-template">
+      <tr>
+        <td class="seq"></td>
+        <td class="med-name"></td>
+        <td class="med-dosage"></td>
+        <td class="med-frequency"></td>
+        <td class="med-times"></td>
+        <td class="med-supply"></td>
+        <td class="med-notes"></td>
+        <td class="med-actions">
+          <button class="edit-med">Edit</button>
+          <button class="remove-med">Remove</button>
+        </td>
+      </tr>
+    </template>
+
+    <template id="upcoming-item-template">
+      <li>
+        <div class="time"><strong class="dose-time"></strong></div>
+        <div class="meta">
+          <div class="med-label"></div>
+          <div class="dose-actions">
+            <button class="mark-taken">Taken</button>
+            <button class="mark-skipped">Skip</button>
+            <button class="snooze">Snooze</button>
+          </div>
+        </div>
+      </li>
+    </template>
+
+    <template id="history-row-template">
+      <tr>
+        <td class="h-date"></td>
+        <td class="h-time"></td>
+        <td class="h-med"></td>
+        <td class="h-dosage"></td>
+        <td class="h-status"></td>
+        <td class="h-notes"></td>
+      </tr>
+    </template>
+
+    <!-- Footer -->
+    <footer id="contact">
+      <div class="footer-content">
+        <h3>CareBuddy</h3>
+        <p>Track your health. Manage your medicines. Live smarter.</p>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <p class="footer-bottom">© 2025 CareBuddy. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

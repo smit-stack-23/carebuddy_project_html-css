@@ -1,0 +1,282 @@
+/* =========================
+   FONT IMPORTS
+========================= */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@500;600&family=Roboto:wght@400;500&display=swap&display=swap");
+
+/* =========================
+   COLOR & FONT VARIABLES
+========================= */
+:root {
+  --teal: #00a8a8;
+  --dark-teal: #007b7b;
+  --mint-green: #a8f0d1;
+  --light-aqua: #e6f9f9;
+  --lime-green: #5dd37c;
+  --dark-lime: #43a963;
+  --coral: #ff6b6b;
+
+  --background-color: #f8fafa;
+  --heading-color: #004d4d;
+  --text-color: #333;
+  --border-color: rgba(0, 0, 0, 0.15);
+
+  --font-primary: "Montserrat", sans-serif;
+  --font-secondary: "Roboto", sans-serif;
+  --font-accent: "Poppins", sans-serif;
+}
+
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, var(--light-aqua), var(--mint-green));
+  color: var(--text-color);
+  font-family: var(--font-secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+/* Screen reader only */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.login-container,
+.signup-container {
+  width: 100%;
+  max-width: 420px;
+}
+
+.login-box,
+.signup-box {
+  background: #fff;
+  border-radius: 1.2rem;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  animation: fadeInUp 0.7s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   HEADINGS
+========================= */
+h1 {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  color: var(--teal);
+  font-size: 1.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.signup-box h1 {
+  color: var(--lime-green);
+}
+
+h2 {
+  font-family: var(--font-secondary);
+  font-size: 1.1rem;
+  color: var(--heading-color);
+  margin-bottom: 1.8rem;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+.back-button {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.back-link {
+  color: var(--dark-teal);
+  font-size: 0.9rem;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.25s ease;
+}
+
+.back-link:hover {
+  color: var(--coral);
+}
+
+/* =========================
+   FORM ELEMENTS
+========================= */
+.form-group {
+  text-align: left;
+  margin-bottom: 1.2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--heading-color);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1.5px solid var(--border-color);
+  border-radius: 0.75rem;
+  background: #fff;
+  font-size: 1rem;
+  transition: all 0.25s ease;
+}
+
+input:focus {
+  border-color: var(--teal);
+  background: var(--light-aqua);
+  box-shadow: 0 0 0 4px var(--mint-green);
+  outline: none;
+}
+
+/* =========================
+   OPTIONS (Remember / Forgot)
+========================= */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.8rem 0 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.form-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.form-options input[type="checkbox"] {
+  accent-color: var(--teal);
+  cursor: pointer;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+button {
+  width: 100%;
+  padding: 0.9rem;
+  background: var(--teal);
+  color: #fff;
+  border: none;
+  border-radius: 0.75rem;
+  font-family: var(--font-accent);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 168, 168, 0.3);
+}
+
+button:hover {
+  background: var(--dark-teal);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 168, 168, 0.35);
+}
+
+/* Signup button variant */
+.signup-box button {
+  background: var(--lime-green);
+  box-shadow: 0 5px 15px rgba(93, 211, 124, 0.3);
+}
+
+.signup-box button:hover {
+  background: var(--dark-lime);
+  box-shadow: 0 8px 20px rgba(93, 211, 124, 0.35);
+}
+
+/* =========================
+   LINKS & DIVIDERS
+========================= */
+a {
+  color: var(--teal);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+a:hover {
+  color: var(--dark-teal);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+  margin: 1.6rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ddd;
+  margin: 0 0.75rem;
+}
+
+/* =========================
+   TEXT BELOW FORM
+========================= */
+.signup-text,
+.login-text {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 480px) {
+  .login-box,
+  .signup-box {
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+}

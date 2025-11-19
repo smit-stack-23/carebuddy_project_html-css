@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Dose Tracker – Login</title>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../css/login-signup.css" />
+
+  <!-- Script -->
+  <script src="../js/login-signup.js" defer></script>
+</head>
+<body>
+
+
+  <!-- ===== MAIN LOGIN SECTION ===== -->
+  <main class="login-container" role="main">
+    <section class="login-box" aria-labelledby="login-heading">
+      <!-- Back Button -->
+      <div class="back-button">
+        <a href="index.html" class="back-link" aria-label="Back to home page">← Back to Home</a>
+      </div>
+
+      <!-- Headings -->
+      <h1 id="login-heading">Smart Dose Tracker</h1>
+      <h2>Login to Your Account</h2>
+
+      <!-- ===== LOGIN FORM ===== -->
+      <form id="login-form" autocomplete="off" aria-describedby="login-instructions" novalidate>
+        <p id="login-instructions" class="visually-hidden">
+          Enter your username and password to log in to your account.
+        </p>
+
+        <!-- Username -->
+        <div class="form-group">
+          <label for="username">Email or Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter your email or username"
+            required
+            aria-required="true"
+          />
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+            aria-required="true"
+          />
+        </div>
+
+        <!-- Remember Me + Forgot Password -->
+        <div class="form-options">
+          <label for="remember">
+            <input type="checkbox" id="remember" name="remember" /> Remember me
+          </label>
+          <a href="#" class="forgot-password" aria-label="Reset your password">Forgot Password?</a>
+        </div>
+
+        <!-- Submit -->
+        <div class="form-actions">
+          <button type="submit" id="login-submit">Login</button>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider" role="separator">
+          <span>or</span>
+        </div>
+
+        <!-- Sign Up Link -->
+        <p class="signup-text">
+          Don’t have an account?
+          <a href="signup.html" class="signup-link">Sign up</a>
+        </p>
+      </form>
+    </section>
+  </main>
+
+
+</body>
+</html>

@@ -1,0 +1,360 @@
+/* ===============================
+   CareBuddy Features Page Styles
+   Author: Smit
+   File: feacturs.css
+================================*/
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;500&family=Roboto:wght@400;500&display=swap');
+
+/* Root Variables */
+:root {
+  --teal: #00a8a8;
+  --dark-teal: #007b7b;
+  --mint-green: #a8f0d1;
+  --light-aqua: #e6f9f9;
+  --deep-navy: #002b36;
+  --off-white: #f9fafa;
+  --coral: #ff6b6b;
+  --background-color: #f8fafa;
+  --accent-color: #ffe082;
+  --heading-color: #004d4d;
+  --text-color: #333;
+  --font-primary: 'Montserrat', sans-serif;
+  --font-secondary: 'Roboto', sans-serif;
+  --font-accent: 'Poppins', sans-serif;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: var(--font-secondary);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  scroll-behavior: smooth;
+  text-decoration: none;
+}
+
+/* =========================
+    NAVBAR
+========================= */
+nav {
+    width: 100%;
+    background-color: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 4rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s ease;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    font-family: var(--font-primary);
+}
+
+/* 🔗 Navbar Links */
+.navbar-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.nav-links li {
+    margin: 0 1rem;
+    position: relative;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    font-family: var(--font-secondary);
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    color: var(--accent-color); /* Highlight color */
+}
+
+/* 🎯 CTA Button (Login) */
+.cta {
+    background-color: var(--accent-color);
+    color: var(--deep-navy); /* Dark text for high contrast on yellow */
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    font-family: var(--font-accent);
+}
+
+.cta:hover {
+    background-color: #fff59d; /* Lighter yellow on hover */
+}
+
+/* =========================
+    DROPDOWN MENU
+========================= */
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: var(--teal);
+    top: 100%;
+    left: 0;
+    width: 200px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    z-index: 999;
+}
+
+.dropdown a {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s;
+    font-family: var(--font-secondary);
+}
+
+.dropdown a:hover {
+    background-color: var(--dark-teal);
+}
+
+/* Show dropdown on hover (desktop) */
+.nav-links li:hover > .dropdown {
+    display: block;
+}
+
+/* =========================
+    HAMBURGER MENU
+========================= */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.menu-toggle span {
+    height: 3px;
+    width: 25px;
+    background: white;
+    margin: 4px 0;
+    border-radius: 2px;
+    transition: all 0.4s ease;
+}
+
+/* Animate hamburger into an "X" */
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Menu */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  height: 3px;
+  width: 25px;
+  background: white;
+  margin: 4px 0;
+  border-radius: 3px;
+}
+
+    /* Main Content */
+    .container {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    #features-list {
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: var(--font-primary);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--heading-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-accent);
+      font-size: 1.1rem;
+      color: var(--text-color);
+      margin-bottom: 3rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      text-align: left;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .feature-card h3 {
+      font-family: var(--font-primary);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--dark-teal);
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-card p {
+      font-family: var(--font-secondary);
+      line-height: 1.6;
+      color: #555;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--deep-navy);
+      color: var(--off-white);
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    .footer-content h3 {
+      font-family: var(--font-primary);
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--teal);
+    }
+    
+    .footer-content p {
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+      font-family: var(--font-accent);
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .footer-bottom {
+      font-size: 0.9rem;
+      color: var(--mint-green);
+      margin-top: 2rem;
+    }
+
+/* =========================
+    FOOTER
+========================= */
+footer {
+    background-color: var(--teal);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.footer-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin: 1rem 0;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent-color);
+}
+
+.footer-bottom {
+    font-size: 0.9rem;
+    color: #e0f0f0;
+}
+
+/* ===============================
+   RESPONSIVE
+================================*/
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: var(--teal);
+    text-align: center;
+    padding: 15px 0;
+  }
+
+  .nav-links li {
+    margin: 8px 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}

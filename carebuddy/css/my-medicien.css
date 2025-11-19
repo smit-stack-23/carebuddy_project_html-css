@@ -1,0 +1,767 @@
+/* =========================
+    FONT IMPORTS
+========================= */
+/* Added font-display=swap for performance */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@500;600&family=Roboto:wght@400;500&display=swap&font-display=swap");
+
+/* =========================
+    COLOR & FONT VARIABLES
+========================= */
+:root {
+  /* Color Palette */
+  --teal: #00a8a8;
+  --dark-teal: #007b7b;
+  --mint-green: #a8f0d1;
+  --light-aqua: #e6f9f9;
+  --deep-navy: #002b36;
+  --off-white: #f9fafa;
+  --coral: #ff6b6b; /* Used for SOS/Alerts */
+
+  /* Derived/Utility Colors */
+  --background-color: #f8fafa; /* A slightly darker off-white for contrast */
+  --accent-color: #ffe082; /* High-contrast yellow/gold for CTAs */
+  --heading-color: #004d4d; /* Darkened teal for strong contrast */
+  --text-color: #333;
+
+  /* Font Variables */
+  --font-primary: "Montserrat", sans-serif; /* Headings */
+  --font-secondary: "Roboto", sans-serif; /* Body Text */
+  --font-accent: "Poppins", sans-serif; /* Buttons/Highlights */
+}
+
+/* =========================
+    GLOBAL STYLES
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  font-family: var(--font-secondary);
+}
+
+/* Headings & Titles */
+h1,
+h2,
+h3,
+.section-title {
+  font-family: var(--font-primary);
+  font-weight: 700;
+}
+
+/* Buttons, Highlights */
+button,
+.cta,
+.secondary-btn {
+  font-family: var(--font-accent);
+  font-weight: 600;
+}
+
+/* =========================
+    NAVBAR
+========================= */
+nav {
+  width: 100%;
+  background-color: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 4rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  font-family: var(--font-primary);
+}
+
+/* 🔗 Navbar Links */
+.navbar-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.nav-links li {
+  margin: 0 1rem;
+  position: relative;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  font-family: var(--font-secondary);
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: var(--accent-color); /* Highlight color */
+}
+
+/* 🎯 CTA Button (Login) */
+.cta {
+  background-color: var(--accent-color);
+  color: var(--deep-navy); /* Dark text for high contrast on yellow */
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  font-family: var(--font-accent);
+}
+
+.cta:hover {
+  background-color: #fff59d; /* Lighter yellow on hover */
+}
+
+/* =========================
+    DROPDOWN MENU
+========================= */
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: var(--teal);
+  top: 100%;
+  left: 0;
+  width: 200px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 999;
+}
+
+.dropdown a {
+  display: block;
+  padding: 0.8rem 1rem;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s;
+  font-family: var(--font-secondary);
+}
+
+.dropdown a:hover {
+  background-color: var(--dark-teal);
+}
+
+/* Show dropdown on hover (desktop) */
+.nav-links li:hover > .dropdown {
+  display: block;
+}
+
+/* =========================
+    HAMBURGER MENU
+========================= */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.menu-toggle span {
+  height: 3px;
+  width: 25px;
+  background: white;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+/* Animate hamburger into an "X" */
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+
+/* ======================================
+   SMART DOSE TRACKER - CORE STYLES
+   (for <main> through <template> section)
+====================================== */
+
+/* ==== MAIN LAYOUT ==== */
+main.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 1rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+/* ==== SECTION BASE ==== */
+section {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0.8rem;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+section h2 {
+  font-family: var(--font-primary);
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+  color: var(--heading-color);
+  border-left: 5px solid var(--teal);
+  padding-left: 0.75rem;
+}
+
+/* ==== FORMS ==== */
+form {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+form fieldset {
+  border: none;
+  padding: 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+label {
+  font-weight: 600;
+  font-family: var(--font-secondary);
+  color: var(--heading-color);
+}
+
+input,
+select {
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-family: var(--font-secondary);
+  background: #fff;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--mint-green);
+}
+
+small.muted {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+/* ==== BUTTONS ==== */
+button {
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--teal);
+  color: #fff;
+  font-family: var(--font-accent);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  background: var(--dark-teal);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* ==== TABLES ==== */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 0.9rem 1rem;
+  text-align: left;
+}
+
+thead {
+  background: var(--teal);
+  color: white;
+  font-family: var(--font-primary);
+}
+
+tbody tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+tbody tr:nth-child(even) {
+  background: var(--off-white);
+}
+
+tbody tr:hover {
+  background: var(--mint-green);
+}
+
+/* ==== SMART DOSE TRACKER ==== */
+#tracker-section h3 {
+  font-family: var(--font-primary);
+  margin-bottom: 0.8rem;
+}
+
+#upcoming-list {
+  list-style: none;
+  padding: 0;
+}
+
+#upcoming-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--off-white);
+  border-left: 5px solid var(--teal);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.6rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+#upcoming-list li .dose-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+#upcoming-list li button {
+  font-size: 0.9rem;
+  padding: 0.5rem 0.9rem;
+}
+
+#upcoming-list li .mark-taken {
+  background: var(--mint-green);
+  color: var(--heading-color);
+}
+
+#upcoming-list li .mark-skipped {
+  background: var(--coral);
+}
+
+#upcoming-list li .snooze {
+  background: var(--accent-color);
+  color: var(--heading-color);
+}
+
+/* ==== REMINDER SETTINGS ==== */
+#reminder-settings summary {
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-accent);
+}
+
+#reminder-form {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+/* ==== DOSE HISTORY ==== */
+#dose-history-table td.status.taken {
+  color: var(--dark-teal);
+  font-weight: 600;
+}
+
+#dose-history-table td.status.missed {
+  color: var(--coral);
+  font-weight: 600;
+}
+
+#adherence {
+  margin-top: 1.5rem;
+  background: var(--light-aqua);
+  padding: 1rem;
+  border-radius: 0.6rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* ==== PHARMACY LOCATOR ==== */
+#pharmacy-results ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+#pharmacy-results li {
+  background: var(--off-white);
+  border-left: 5px solid var(--teal);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.8rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+#pharmacy-results li h4 {
+  margin-bottom: 0.4rem;
+  font-family: var(--font-primary);
+  color: var(--heading-color);
+}
+
+#pharmacy-results li p {
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+}
+
+#pharmacy-results li a.directions {
+  color: var(--dark-teal);
+  text-decoration: underline;
+  margin-right: 1rem;
+}
+
+#pharmacy-results li button.call-pharm {
+  background: var(--teal);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 0.4rem;
+}
+
+/* ==== REFILL ALERTS ==== */
+#refill-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+#refill-section li {
+  background: var(--off-white);
+  padding: 0.9rem;
+  border-radius: 0.5rem;
+  border-left: 5px solid var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+
+/* ==== FOOTER ==== */
+footer.container {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: var(--deep-navy);
+  color: white;
+  border-radius: 0.8rem;
+  margin-top: 3rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) {
+  main.container {
+    padding: 1rem;
+  }
+
+  section {
+    padding: 1.2rem;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  #reminder-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+/* =========================
+    FOOTER
+========================= */
+footer {
+  background-color: var(--teal);
+  color: white;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.footer-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin: 1rem 0;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent-color);
+}
+
+.footer-bottom {
+  font-size: 0.9rem;
+  color: #e0f0f0;
+}
+
+/* =========================
+   INPUT BOX STYLES
+========================= */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.6rem;
+  background: #fff;
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  color: var(--text-color);
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.03);
+  transition: all 0.25s ease;
+}
+
+/* Placeholder styling */
+input::placeholder,
+textarea::placeholder {
+  color: #9aa0a6;
+  font-style: italic;
+}
+
+/* Hover effect */
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--teal);
+}
+
+/* Focused input */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+  background: var(--light-aqua);
+  box-shadow: 0 0 0 3px var(--mint-green);
+  transform: translateY(-1px);
+}
+
+/* Disabled input style */
+input:disabled,
+select:disabled {
+  background: #f2f4f5;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* Labels + rows */
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+label {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  color: var(--heading-color);
+  font-size: 0.95rem;
+}
+
+/* Notes or muted text below inputs */
+small.muted {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* =========================
+   TEXTAREA (optional)
+========================= */
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+
+/* =========================
+    RESPONSIVE DESIGN
+========================= */
+
+/* Tablet */
+@media (max-width: 1250px) {
+  nav {
+    padding: 1rem 2rem;
+  }
+
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .hero-content {
+    margin-top: 2rem;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .about {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .about-text {
+    margin-top: 2rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 1120px) {
+  nav {
+    padding: 1rem 1.5rem;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  /* Mobile Menu */
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: var(--teal);
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    text-align: center;
+    padding: 1rem 0;
+    animation: slideDown 0.4s ease forwards;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 1rem 0;
+  }
+
+  /* Login Button Always Visible */
+  .cta {
+    order: 2;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.1rem;
+  }
+
+  .menu-toggle {
+    order: 3;
+  }
+
+  /* Center hero buttons */
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dropdown {
+    position: static;
+    box-shadow: none;
+  }
+
+  .dropdown a {
+    background: var(--dark-teal);
+  }
+
+  .hero {
+    padding: 3rem 2rem;
+  }
+
+  .about,
+  .features,
+  .testimonials {
+    padding: 3rem 1.5rem;
+  }
+
+  .feature-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Slide-down animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

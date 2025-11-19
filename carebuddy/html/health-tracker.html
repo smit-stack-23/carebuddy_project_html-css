@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enter Health Data - CareBuddy</title>
+    <link rel="stylesheet" href="../css/health-tracker.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="../js/health-tracker.js" defer></script>
+  </head>
+  <body>
+    <nav>
+      <a href="#home" class="logo">CareBuddy</a>
+
+      <div class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <ul class="nav-links">
+        <li class="active"><a href="index.html">Home</a></li>
+
+        <li>
+          <a href="feacturs.html">Features ▼</a>
+          <div class="dropdown">
+            <a href="features.html#fitness">Fitness Tracking</a>
+            <a href="features.html#sleep">Sleep Analysis</a>
+            <a href="features.html#heart">Heart Rate Monitor</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="health-tracker.html">Health Tracker ▼</a>
+          <div class="dropdown">
+            <a href="#">BMI Calculator</a>
+            <a href="#">Diet Plans</a>
+            <a href="#">Exercise Logs</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="my-medicien.html">My Medicines ▼</a>
+          <div class="dropdown">
+            <a href="#">Reminders</a>
+            <a href="#">Dosage History</a>
+            <a href="#">Pharmacy Locator</a>
+          </div>
+        </li>
+
+        <li><button class="cta"><a href="loginpage.html">Login / Sign Up</a></button></li>
+      </ul>
+    </nav>
+    <!-- ============================= 
+    ENTER HEALTH DATA — COLLAPSIBLE
+    ============================= -->
+    <section id="enter-health-data">
+      <h2 id="toggle-health-data">📈 Enter Health Data</h2>
+      <p>Record your vital signs and health measurements below.</p>
+
+      <div id="form-container">
+        <form id="health-data-form">
+          <fieldset>
+            <legend>Personal Information</legend>
+            <label for="name">Full Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+              required
+            />
+
+            <label for="age">Age:</label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              placeholder="Enter your age"
+              required
+            />
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+              <option value="">Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </fieldset>
+
+          <fieldset>
+            <legend>Vital Signs</legend>
+            <label for="bp">Blood Pressure (mmHg):</label>
+            <input
+              type="text"
+              id="bp"
+              name="bp"
+              placeholder="e.g., 120/80"
+              required
+            />
+
+            <label for="glucose">Glucose Level (mg/dL):</label>
+            <input
+              type="number"
+              id="glucose"
+              name="glucose"
+              placeholder="e.g., 95"
+              required
+            />
+
+            <label for="oxygen">Oxygen Saturation (%):</label>
+            <input
+              type="number"
+              id="oxygen"
+              name="oxygen"
+              placeholder="e.g., 98"
+              required
+            />
+
+            <label for="heartRate">Heart Rate (bpm):</label>
+            <input
+              type="number"
+              id="heartRate"
+              name="heartRate"
+              placeholder="e.g., 75"
+              required
+            />
+
+            <label for="temperature">Body Temperature (°C):</label>
+            <input
+              type="number"
+              id="temperature"
+              name="temperature"
+              step="0.1"
+              placeholder="e.g., 36.5"
+              required
+            />
+          </fieldset>
+
+          <fieldset>
+            <legend>Additional Notes</legend>
+            <label for="notes">Comments or Symptoms:</label>
+            <textarea
+              id="notes"
+              name="notes"
+              rows="3"
+              placeholder="Write any observations here..."
+            ></textarea>
+          </fieldset>
+
+          <button type="submit">Save Data</button>
+          <button type="reset">Clear</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="bmi-calculator">
+      <h2>💪 BMI Calculator</h2>
+      <p>
+        Calculate your Body Mass Index (BMI) to understand your health status.
+      </p>
+
+      <form id="bmiForm">
+        <div class="input-group">
+          <label for="height">Height (cm):</label>
+          <input
+            type="number"
+            id="height"
+            name="height"
+            placeholder="Enter your height"
+            required
+          />
+
+          <label for="weight">Weight (kg):</label>
+          <input
+            type="number"
+            id="weight"
+            name="weight"
+            placeholder="Enter your weight"
+            required
+          />
+        </div>
+
+        <button type="submit" id="calculateBtn">Calculate BMI</button>
+      </form>
+
+      <div id="bmiResult">
+        <!-- Result will be shown here using JS later -->
+        <p>Your BMI: <span id="bmiValue">--</span></p>
+        <p>Status: <span id="bmiStatus">--</span></p>
+      </div>
+    </section>
+
+    <section id="diet-plan">
+      <h2>🥗 Personalized Diet Plan</h2>
+      <p>
+        Get a suggested diet plan based on your body metrics and health goals.
+      </p>
+
+      <form id="dietForm">
+        <!-- Goal Selection -->
+        <div class="form-group">
+          <label for="dietGoal">Select Your Goal:</label>
+          <select id="dietGoal" name="dietGoal" required>
+            <option value="">-- Choose a goal --</option>
+            <option value="weightLoss">Weight Loss</option>
+            <option value="muscleGain">Muscle Gain</option>
+            <option value="maintain">Maintain Weight</option>
+          </select>
+        </div>
+
+        <!-- Dietary Preference -->
+        <div class="form-group">
+          <label for="dietType">Dietary Preference:</label>
+          <select id="dietType" name="dietType" required>
+            <option value="">-- Choose preference --</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="nonVegetarian">Non-Vegetarian</option>
+            <option value="vegan">Vegan</option>
+          </select>
+        </div>
+
+        <!-- Daily Activity Level -->
+        <div class="form-group">
+          <label for="activityLevel">Daily Activity Level:</label>
+          <select id="activityLevel" name="activityLevel" required>
+            <option value="">-- Select activity level --</option>
+            <option value="sedentary">Low (Desk Job)</option>
+            <option value="moderate">Moderate (Some Exercise)</option>
+            <option value="active">High (Regular Exercise)</option>
+          </select>
+        </div>
+
+        <!-- Placeholder for showing user's height and weight (from BMI section) -->
+        <div class="form-group">
+          <label>Height:</label>
+          <input
+            type="text"
+            id="dietHeight"
+            placeholder="Auto-filled from BMI"
+            readonly
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Weight:</label>
+          <input
+            type="text"
+            id="dietWeight"
+            placeholder="Auto-filled from BMI"
+            readonly
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="generateDiet">Generate Diet Plan</button>
+      </form>
+
+      <!-- Placeholder for output -->
+      <div id="dietResult">
+      </div>
+    </section>
+    <section id="exercise-log">
+      <h2>🏋️ Exercise Log</h2>
+      <p>Track your workouts, calories burned, and daily activity progress.</p>
+
+      <form id="exerciseForm">
+        <!-- Date -->
+        <div class="form-group">
+          <label for="exerciseDate">Date:</label>
+          <input type="date" id="exerciseDate" name="exerciseDate" required />
+        </div>
+
+        <!-- Exercise Type (Multiple Selection) -->
+        <div class="form-group">
+          <label for="exerciseType">Select Exercises:</label>
+          <select id="exerciseType" name="exerciseType" multiple required>
+            <option value="walking">🚶 Walking</option>
+            <option value="running">🏃 Running</option>
+            <option value="cycling">🚴 Cycling</option>
+            <option value="swimming">🏊 Swimming</option>
+            <option value="yoga">🧘 Yoga</option>
+            <option value="strength">🏋️ Strength Training</option>
+            <option value="dance">💃 Dance</option>
+            <option value="sports">⚽ Sports</option>
+          </select>
+          <small
+            >Hold Ctrl (Windows) or Command (Mac) to select multiple
+            exercises.</small
+          >
+        </div>
+
+        <!-- Duration -->
+        <div class="form-group">
+          <label for="duration">Total Duration (minutes):</label>
+          <input
+            type="number"
+            id="duration"
+            name="duration"
+            placeholder="e.g. 45"
+            required
+          />
+        </div>
+
+        <!-- Calories Burned -->
+        <div class="form-group">
+          <label for="calories">Calories Burned:</label>
+          <input
+            type="number"
+            id="calories"
+            name="calories"
+            placeholder="e.g. 300"
+            required
+          />
+        </div>
+
+        <!-- Notes -->
+        <div class="form-group">
+          <label for="notes">Additional Notes:</label>
+          <textarea
+            id="notes"
+            name="notes"
+            rows="3"
+            placeholder="Any observations or comments..."
+          ></textarea>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" id="saveExercise">Save Log</button>
+      </form>
+
+      <!-- Output area -->
+      <div id="exerciseResult">
+        <!-- Exercise summary or logs will appear here later -->
+      </div>
+    </section>
+    <section id="fitness-tracking">
+      <h2>🏃‍♂️ Fitness Tracking</h2>
+      <p>
+        Monitor your daily steps, activity level, and progress goals to stay
+        healthy and active.
+      </p>
+
+      <form id="fitnessForm">
+        <!-- Date -->
+        <div class="form-group">
+          <label for="fitnessDate">Date:</label>
+          <input type="date" id="fitnessDate" name="fitnessDate" required />
+        </div>
+
+        <!-- Step Count -->
+        <div class="form-group">
+          <label for="steps">Steps Walked:</label>
+          <input
+            type="number"
+            id="steps"
+            name="steps"
+            placeholder="Enter steps (e.g. 7500)"
+            required
+          />
+        </div>
+
+        <!-- Activity Duration -->
+        <div class="form-group">
+          <label for="activityDuration">Activity Duration (minutes):</label>
+          <input
+            type="number"
+            id="activityDuration"
+            name="activityDuration"
+            placeholder="e.g. 60"
+            required
+          />
+        </div>
+
+        <!-- Goal Selection -->
+        <div class="form-group">
+          <label for="goalType">Goal Type:</label>
+          <select id="goalType" name="goalType" required>
+            <option value="">Select goal</option>
+            <option value="steps">Daily Step Goal</option>
+            <option value="duration">Workout Duration Goal</option>
+            <option value="calories">Calories Burned Goal</option>
+          </select>
+        </div>
+
+        <!-- Goal Value -->
+        <div class="form-group">
+          <label for="goalValue">Goal Target:</label>
+          <input
+            type="number"
+            id="goalValue"
+            name="goalValue"
+            placeholder="Enter target (e.g. 10000 steps)"
+            required
+          />
+        </div>
+
+        <!-- Notes -->
+        <div class="form-group">
+          <label for="fitnessNotes">Notes:</label>
+          <textarea
+            id="fitnessNotes"
+            name="fitnessNotes"
+            rows="3"
+            placeholder="Write your daily health notes or activities..."
+          ></textarea>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" id="saveFitness">Save Fitness Log</button>
+      </form>
+
+      <!-- Progress Display (for JS use later) -->
+      <div id="fitnessProgress">
+        <!-- Progress bars, charts, or summary data will appear here -->
+      </div>
+    </section>
+
+    <!-- ===============================
+     SLEEP ANALYZER SECTION
+=============================== -->
+    <section id="sleep-analyzer" class="feature-section">
+      <h2>😴 Sleep Analyzer</h2>
+      <p>Analyze your sleep duration and quality trends.</p>
+
+      <form id="sleepForm">
+        <div class="input-group">
+          <label for="sleepStart">Sleep Start Time:</label>
+          <input type="datetime-local" id="sleepStart" required />
+
+          <label for="wakeTime">Wake Time:</label>
+          <input type="datetime-local" id="wakeTime" required />
+        </div>
+
+        <div class="input-group">
+          <label for="sleepDuration">Total Sleep Duration (hrs):</label>
+          <input
+            type="text"
+            id="sleepDuration"
+            readonly
+            placeholder="Auto-calculated"
+          />
+
+          <label for="sleepQuality">Sleep Quality:</label>
+          <input
+            type="text"
+            id="sleepQuality"
+            readonly
+            placeholder="Auto-detected by system"
+          />
+        </div>
+
+        <button type="submit">Analyze Sleep</button>
+      </form>
+
+      <div id="sleepResult" class="result-box">
+        <!-- JS will insert analysis results here -->
+      </div>
+    </section>
+
+    <!-- ===============================
+     HEART RATE MONITOR SECTION
+=============================== -->
+    <section id="heart-rate-monitor">
+      <h2>❤️ Heart Rate Monitor</h2>
+      <p>
+        Connect your Bluetooth heart rate device to start monitoring in
+        real-time.
+      </p>
+
+      <div class="live-reading">
+        <i id="bluetoothIcon" class="fa fa-bluetooth-b bluetooth-icon"></i>
+        <h3>Current Heart Rate:</h3>
+        <div id="heartRateDisplay" class="heart-rate-value">-- BPM</div>
+        <p class="status-text">Not connected. Please connect a device.</p>
+        <button id="connectBtn">🔗 Connect Device</button>
+      </div>
+
+      <div id="heartRateLog" class="log-box">
+        <h3>Recent Readings</h3>
+        <ul id="heartRateList"></ul>
+      </div>
+
+      <div id="heartRateChart" class="chart-box">
+        <h3>Heart Rate Trends</h3>
+        <canvas id="heartRateCanvas"></canvas>
+      </div>
+    </section>
+
+    <!-- ===============================
+     HYDRATION TRACKER — UPDATED
+=============================== -->
+    <section id="hydration-tracker" class="feature-section">
+      <h2>💧 Hydration Tracker</h2>
+      <p>
+        Track your daily water intake and stay hydrated with timely reminders.
+      </p>
+
+      <!-- User Goal Setup -->
+      <div class="hydration-goal">
+        <h3>Set Your Hydration Goal</h3>
+        <div class="hydration-inputs">
+          <div>
+            <label for="dailyGoalInput">Daily Goal (ml):</label><br />
+            <input
+              type="number"
+              id="dailyGoalInput"
+              placeholder="e.g., 2000"
+              min="500"
+              max="5000"
+            />
+          </div>
+          <div>
+            <label for="drinkAmountInput">Per Drink Amount (ml):</label><br />
+            <input
+              type="number"
+              id="drinkAmountInput"
+              placeholder="e.g., 250"
+              min="50"
+              max="1000"
+            />
+          </div>
+        </div>
+        <button id="setGoalBtn">Set Goal</button>
+      </div>
+
+      <!-- Daily Goal Display -->
+      <div class="hydration-goal-display">
+        <h3>Daily Goal: <span id="dailyGoal">2000</span> ml</h3>
+        <p>
+          Keep yourself refreshed by drinking enough water throughout the day!
+        </p>
+      </div>
+
+      <!-- Water Intake Progress -->
+      <div class="hydration-progress">
+        <label for="waterProgress">Progress:</label>
+        <progress id="waterProgress" value="0" max="2000"></progress>
+        <span id="progressValue">0 / 2000 ml</span>
+      </div>
+
+      <!-- Add Water Buttons -->
+      <div class="hydration-actions">
+        <h3>Add Water Intake</h3>
+        <div class="button-group">
+          <button class="water-btn" data-amount="100">+100 ml</button>
+          <button class="water-btn" data-amount="250">+250 ml</button>
+          <button class="water-btn" data-amount="500">+500 ml</button>
+          <button class="water-btn" id="customDrinkBtn">+ Custom</button>
+        </div>
+      </div>
+
+      <!-- Reminder Settings -->
+      <div class="hydration-reminder">
+        <h3>Hydration Reminder</h3>
+        <p>
+          Set reminder intervals to get notified for your next glass of water.
+        </p>
+        <label for="reminderInterval">Reminder Interval (minutes):</label>
+        <input
+          type="number"
+          id="reminderInterval"
+          placeholder="e.g., 60"
+          min="15"
+          max="180"
+        />
+        <button id="setReminderBtn">Set Reminder</button>
+      </div>
+    </section>
+
+    <!-- ===============================
+     CALORIE COUNTER SECTION (HTML ONLY)
+     Records food items and shows total calories.
+     JS/CSS to be added later — all interactive hooks (ids/classes) are provided.
+=============================== -->
+    <section id="calorie-counter" class="feature-section">
+      <h2>🔥 Calorie Counter</h2>
+      <p>
+        Record food items, servings and calories per serving. Total calories are
+        calculated from the entries.
+      </p>
+
+      <!-- Add Food Item Form -->
+      <form id="calorieForm" class="calorie-form" aria-label="Add food item">
+        <div class="form-row">
+          <label for="foodName">Food name</label>
+          <input
+            type="text"
+            id="foodName"
+            name="foodName"
+            placeholder="e.g., Banana"
+            required
+          />
+        </div>
+
+        <div class="form-row">
+          <label for="calPerServing">Calories per serving</label>
+          <input
+            type="number"
+            id="calPerServing"
+            name="calPerServing"
+            placeholder="e.g., 105"
+            min="0"
+            step="1"
+            required
+          />
+        </div>
+
+        <div class="form-row">
+          <label for="servings">Servings</label>
+          <input
+            type="number"
+            id="servings"
+            name="servings"
+            placeholder="e.g., 1"
+            min="0.1"
+            step="0.1"
+            required
+          />
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="addFoodBtn">Add food</button>
+          <button type="button" id="clearFoodsBtn">Clear all</button>
+        </div>
+      </form>
+
+      <!-- Quick add presets (optional, JS can wire these) -->
+      <div class="quick-presets" aria-hidden="true">
+        <strong>Quick presets:</strong>
+        <button
+          type="button"
+          data-name="Apple"
+          data-cal="95"
+          data-serv="1"
+          class="preset-btn"
+        >
+          Apple — 95 kcal
+        </button>
+        <button
+          type="button"
+          data-name="Slice of Bread"
+          data-cal="80"
+          data-serv="1"
+          class="preset-btn"
+        >
+          Bread — 80 kcal
+        </button>
+        <button
+          type="button"
+          data-name="Grilled Chicken (100g)"
+          data-cal="165"
+          data-serv="1"
+          class="preset-btn"
+        >
+          Chicken — 165 kcal
+        </button>
+      </div>
+
+      <!-- List of added foods -->
+      <div class="calorie-list-wrap">
+        <h3>Today's entries</h3>
+        <ul id="calorieList" class="calorie-list" aria-live="polite">
+          <!-- JS will append <li data-id="..."> items here in format:
+           <li data-id="uuid">
+             <div class="item-left">Food name • calories/serv • servings</div>
+             <div class="item-right">itemTotal kcal <button class="remove-item">Remove</button></div>
+           </li>
+      -->
+        </ul>
+
+        <div class="calorie-summary" aria-hidden="false">
+          <div id="calorieProgressContainer">
+            <progress id="calorieProgress" value="0" max="2000"></progress>
+            <span id="progressValue">0 / 2000 kcal</span>
+          </div>
+
+          <div class="summary-row">
+            <span class="summary-label">Total calories:</span>
+            <span id="calorieTotal" class="summary-value">0 kcal</span>
+          </div>
+
+          <!-- optional: export / download hooks -->
+          <div class="summary-actions">
+            <button type="button" id="exportCalorieBtn">Export (.json)</button>
+            <button type="button" id="downloadReportBtn">
+              Download report (.csv)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===============================
+     STRESS & MOOD TRACKER (UNIQUE DESIGN)
+     Clean and structured version – ready for styling & JS logic
+=============================== -->
+    <section id="moodTrackerSection" class="tracker-section">
+      <div class="tracker-header">
+        <h2>🧠 Stress & Mood Tracker</h2>
+        <p>Monitor your emotional wellness and relaxation habits daily.</p>
+      </div>
+
+      <form
+        id="moodTrackerForm"
+        class="tracker-form"
+        aria-label="Stress and Mood Tracker Form"
+      >
+        <!-- Mood Selection -->
+        <div class="input-group">
+          <label for="moodSelect">Current Mood</label>
+          <select id="moodSelect" name="moodSelect" required>
+            <option value="" disabled selected>Select mood</option>
+            <option value="Happy">Happy</option>
+            <option value="Neutral">Neutral</option>
+            <option value="Stressed">Stressed</option>
+            <option value="Sad">Sad</option>
+            <option value="Angry">Angry</option>
+          </select>
+
+          <!-- Live Emoji Reaction Display -->
+          <div class="emoji-display" id="moodEmoji" aria-live="polite">😊</div>
+        </div>
+
+        <!-- Stress Level Scale -->
+        <div class="input-group">
+          <label for="stressScale">Stress Level (1 - 10)</label>
+          <input
+            type="number"
+            id="stressScale"
+            name="stressScale"
+            min="1"
+            max="10"
+            placeholder="Rate your stress level"
+            required
+          />
+        </div>
+
+        <!-- Relaxation Activities -->
+        <div class="input-group">
+          <label for="relaxationChoice">What helped you relax today?</label>
+          <div class="checkbox-group">
+            <label
+              ><input
+                type="checkbox"
+                name="relaxationChoice"
+                value="meditation"
+              />
+              🧘 Meditation</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                name="relaxationChoice"
+                value="exercise"
+              />
+              🏃 Exercise</label
+            >
+            <label
+              ><input type="checkbox" name="relaxationChoice" value="music" />
+              🎵 Music</label
+            >
+            <label
+              ><input type="checkbox" name="relaxationChoice" value="reading" />
+              📖 Reading</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                name="relaxationChoice"
+                value="social-time"
+              />
+              👨‍👩‍👧‍👦 Family/Friends</label
+            >
+            <label
+              ><input type="checkbox" name="relaxationChoice" value="nature" />
+              🌿 Nature Walk</label
+            >
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="input-group">
+          <label for="moodNotes">Additional Reflections</label>
+          <textarea
+            id="moodNotes"
+            name="moodNotes"
+            rows="3"
+            placeholder="Write about your day, triggers, or positive moments..."
+          ></textarea>
+        </div>
+
+        <!-- Save Button -->
+        <div class="form-action">
+          <button type="submit" id="saveMoodButton" class="btn-primary">
+            💾 Save Mood Entry
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ===============================
+     HEALTH REPORT DOWNLOAD SECTION
+     (Complete Version with All Trackers and Doctor Sharing)
+=============================== -->
+    <section
+      id="health-report"
+      class="feature-section"
+      aria-labelledby="healthReportTitle"
+    >
+      <header>
+        <h2 id="healthReportTitle">📥 Health Report Download</h2>
+        <p class="muted">
+          Export your complete health data, tracker records, and progress
+          insights easily.
+        </p>
+      </header>
+
+      <form id="healthReportForm" class="report-form">
+        <!-- Date Range -->
+        <div class="form-row">
+          <label for="reportFrom">From:</label>
+          <input type="date" id="reportFrom" name="reportFrom" required />
+
+          <label for="reportTo">To:</label>
+          <input type="date" id="reportTo" name="reportTo" required />
+        </div>
+
+        <!-- File Format -->
+        <fieldset class="form-row">
+          <legend>Export Format</legend>
+          <label
+            ><input type="radio" name="format" value="pdf" checked /> PDF (for
+            viewing/printing)</label
+          >
+          <label
+            ><input type="radio" name="format" value="csv" /> CSV (for Excel or
+            Sheets)</label
+          >
+        </fieldset>
+
+        <!-- Tracker Selection -->
+        <fieldset class="form-row">
+          <legend>Select Trackers to Include</legend>
+          <div class="tracker-grid">
+            <label
+              ><input type="checkbox" value="bmi" checked /> BMI
+              Calculator</label
+            >
+            <label
+              ><input type="checkbox" value="diet" checked /> Diet Plan</label
+            >
+            <label
+              ><input type="checkbox" value="exercise" checked /> Exercise
+              Log</label
+            >
+            <label
+              ><input type="checkbox" value="fitness" checked /> Fitness
+              Tracking</label
+            >
+            <label
+              ><input type="checkbox" value="sleep" checked /> Sleep
+              Analyzer</label
+            >
+            <label
+              ><input type="checkbox" value="heart" checked /> Heart Rate
+              Monitor</label
+            >
+            <label
+              ><input type="checkbox" value="hydration" checked /> Hydration
+              Tracker</label
+            >
+            <label
+              ><input type="checkbox" value="calorie" checked /> Calorie
+              Counter</label
+            >
+            <label
+              ><input type="checkbox" value="stress" checked /> Stress & Mood
+              Tracker</label
+            >
+          </div>
+        </fieldset>
+
+        <!-- Additional Options -->
+        <fieldset class="form-row">
+          <legend>Additional Options</legend>
+          <label
+            ><input type="checkbox" value="charts" checked /> Include Charts and
+            Trends</label
+          >
+          <label
+            ><input type="checkbox" value="notes" /> Include Notes /
+            Comments</label
+          >
+          <label
+            ><input type="checkbox" value="attachments" /> Include Attachments
+            (images, reports)</label
+          >
+          <label
+            ><input type="checkbox" value="summary" checked /> Include Summary
+            Insights</label
+          >
+        </fieldset>
+
+        <!-- Doctor Sharing Option -->
+        <fieldset class="form-row">
+          <legend>Doctor Sharing</legend>
+          <label for="doctorEmail">Doctor’s Email (optional):</label>
+          <input
+            type="email"
+            id="doctorEmail"
+            name="doctorEmail"
+            placeholder="e.g., dr.john@hospital.com"
+          />
+          <p class="hint">
+            Enter your doctor’s email to send the report directly.
+          </p>
+        </fieldset>
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <button type="submit" id="btnDownloadSelected">
+            Download Selected Data
+          </button>
+          <button type="button" id="btnDownloadAll">
+            📂 Download All Data
+          </button>
+          <button type="button" id="btnShareDoctor">
+            📧 Share Directly with Doctor
+          </button>
+          <button type="reset" id="btnReset">Reset</button>
+        </div>
+
+        <!-- Status Display -->
+        <div id="reportStatus" aria-live="polite" hidden>
+          Preparing your report... Please wait.
+        </div>
+      </form>
+    </section>
+
+    <!-- ===============================
+     INVITE CAREGIVER SECTION
+     (Share Health Data with Trusted Contact or Doctor)
+=============================== -->
+    <section
+      id="invite-caregiver"
+      class="feature-section"
+      aria-labelledby="inviteCaregiverTitle"
+    >
+      <header>
+        <h2 id="inviteCaregiverTitle">🤝 Invite Caregiver</h2>
+        <p class="muted">
+          Share your health data securely with a trusted contact, family member,
+          or doctor.
+        </p>
+      </header>
+
+      <form id="inviteCaregiverForm" class="caregiver-form">
+        <!-- Caregiver Info -->
+        <div class="form-row">
+          <label for="caregiverName">Caregiver Name:</label>
+          <input
+            type="text"
+            id="caregiverName"
+            name="caregiverName"
+            placeholder="Enter full name"
+            required
+          />
+        </div>
+
+        <div class="form-row">
+          <label for="caregiverEmail">Caregiver Email:</label>
+          <input
+            type="email"
+            id="caregiverEmail"
+            name="caregiverEmail"
+            placeholder="e.g., dr.john@hospital.com"
+            required
+          />
+        </div>
+
+        <div class="form-row">
+          <label for="relation">Relationship:</label>
+          <select id="relation" name="relation" required>
+            <option value="">Select Relationship</option>
+            <option value="doctor">Doctor</option>
+            <option value="family">Family Member</option>
+            <option value="friend">Friend</option>
+            <option value="trainer">Fitness Trainer</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <!-- Permissions -->
+        <fieldset class="form-row">
+          <legend>Health Data to Share</legend>
+          <div class="tracker-grid">
+            <label
+              ><input type="checkbox" value="bmi" checked /> BMI Data</label
+            >
+            <label><input type="checkbox" value="diet" /> Diet Plan</label>
+            <label
+              ><input type="checkbox" value="exercise" /> Exercise Log</label
+            >
+            <label
+              ><input type="checkbox" value="sleep" /> Sleep Analyzer</label
+            >
+            <label
+              ><input type="checkbox" value="heart" /> Heart Rate Monitor</label
+            >
+            <label
+              ><input type="checkbox" value="hydration" /> Hydration
+              Tracker</label
+            >
+            <label
+              ><input type="checkbox" value="calories" /> Calorie Counter</label
+            >
+            <label
+              ><input type="checkbox" value="stress" /> Stress & Mood</label
+            >
+            <label
+              ><input type="checkbox" value="reports" /> Health Reports</label
+            >
+          </div>
+        </fieldset>
+
+        <!-- Access Duration -->
+        <div class="form-row">
+          <label for="accessDuration">Access Duration:</label>
+          <select id="accessDuration" name="accessDuration" required>
+            <option value="1week">1 Week</option>
+            <option value="1month" selected>1 Month</option>
+            <option value="3months">3 Months</option>
+            <option value="6months">6 Months</option>
+            <option value="unlimited">Unlimited</option>
+          </select>
+        </div>
+
+        <!-- Message -->
+        <div class="form-row">
+          <label for="inviteMessage">Message (optional):</label>
+          <textarea
+            id="inviteMessage"
+            name="inviteMessage"
+            rows="3"
+            placeholder="Add a short note or instruction..."
+          ></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div class="form-actions">
+          <button type="submit" id="btnSendInvite">📩 Send Invitation</button>
+          <button type="button" id="btnViewInvites">
+            👁️ View Shared Access
+          </button>
+          <button type="button" id="btnRevokeAccess">❌ Revoke Access</button>
+          <button type="reset">Reset</button>
+        </div>
+
+        <!-- Status -->
+        <div id="inviteStatus" aria-live="polite" hidden>
+          Sending invitation... Please wait.
+        </div>
+      </form>
+    </section>
+    <!-- Footer -->
+    <footer id="contact">
+      <div class="footer-content">
+        <h3>CareBuddy</h3>
+        <p>Track your health. Manage your medicines. Live smarter.</p>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <p class="footer-bottom">© 2025 CareBuddy. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
